@@ -1,4 +1,4 @@
-(defproject dk.ative/docjure "1.11.0-SNAPSHOT"
+(defproject dk.ative/docjure "1.11.0"
   :description "Easily read and write Office documents from Clojure."
   :url "http://github.com/mjul/docjure"
   :license {:name "MIT License"
@@ -6,7 +6,11 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.apache.poi/poi "3.13"]
                  [org.apache.poi/poi-ooxml "3.13"]]
-  :plugins [[lein-difftest "2.0.0"]]
+  :plugins [[lein-difftest "2.0.0"]
+            [s3-wagon-private "1.2.0"]]
+  :repositories {"releases" {:url "s3p://leinrepo/releases/"
+                             :username :env/aws_access_key ;; gets environment variable AWS_ACCESS_KEY
+                             :passphrase :env/aws_secret_key}}
   :profiles {:1.3  {:dependencies [[org.clojure/clojure "1.3.0"]]}
              :1.4  {:dependencies [[org.clojure/clojure "1.4.0"]]}
              :1.5  {:dependencies [[org.clojure/clojure "1.5.1"]]}
